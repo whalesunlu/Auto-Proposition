@@ -6,7 +6,7 @@ This extension helps type propositional symbols in Chrome text editors such as G
 
 ## Text replacements
 
-Type one of these commands in a text field or Google Docs:
+Type one of these commands in a text field or Word:
 
 
 

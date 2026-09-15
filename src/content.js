@@ -32,13 +32,12 @@ function insertIntoContentEditable(symbol) {
 function propositions(keyPressed) {
     const symbol = unicodeSymbols[keyPressed];
     const active = document.activeElement;
+    if (!active) return;
 
-    if (active && active.tagName === "TEXTAREA" || active && active.tagName === "INPUT") {
+    if (active.tagName === "TEXTAREA" || active.tagName === "INPUT") {
         insertIntoInputOrTextarea(active, symbol);
-    } else if (active && active.isContentEditable) {
+    } else if (active.isContentEditable) {
         insertIntoContentEditable(symbol);
-    } else {
-        navigator.clipboard.writeText(symbol);
     }
 }
 const arrowKeys = new Set([

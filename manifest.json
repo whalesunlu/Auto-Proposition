@@ -3,6 +3,11 @@
     "name": "Auto-Proposition",
     "version": "1.0.0",
     "description": "Insert propositional logic symbols with keyboard shortcuts.",
+    "icons": {
+        "16": "favicon.png",
+        "48": "favicon.png",
+        "128": "favicon.png"
+    },
     "content_scripts": [
         {
             "matches": [
