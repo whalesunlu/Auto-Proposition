@@ -1,5 +1,5 @@
 const unicodeSymbols = {
-    "Digit1": "1",
+    "Digit1": "∧",
     "Digit2": "\u2228",
     "Digit3": "\u00AC",
     "Digit4": "\u21D2"
@@ -46,10 +46,10 @@ const arrowKeys = new Set([
     "Digit3",
     "Digit4"
 ]);
-const controlKeyListener = (event) => {
-    if (event.ctrlKey && arrowKeys.has(event.code)) {
+const metaKeyListener = (event) => {
+    if (event.metaKey && arrowKeys.has(event.code)) {
         event.preventDefault();
         propositions(event.code);
     }
 };
-document.addEventListener("keydown", controlKeyListener);
+document.addEventListener("keydown", metaKeyListener);
