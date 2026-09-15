@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Auto-Proposition",
+    "version": "1.0.0",
+    "description": "Insert propositional logic symbols with keyboard shortcuts.",
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/content.js"
+            ],
+            "run_at": "document_start",
+            "all_frames": true
+        }
+    ]
+}
