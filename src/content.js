@@ -1,8 +1,10 @@
 const unicodeSymbols = {
     "Digit1": "∧",
-    "Digit2": "\u2228",
-    "Digit3": "\u00AC",
-    "Digit4": "\u21D2"
+    "Digit2": "∨",
+    "Digit3": "¬",
+    "Digit4": "→",
+    "Digit4": "↔",
+    "Digit4": "⊕"
 };
 function insertIntoInputOrTextarea(el, symbol) {
     const start = el.selectionStart;
