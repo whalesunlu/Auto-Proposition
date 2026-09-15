@@ -32,12 +32,13 @@ function insertIntoContentEditable(symbol) {
 function propositions(keyPressed) {
     const symbol = unicodeSymbols[keyPressed];
     const active = document.activeElement;
-    if (!active) return;
 
-    if (active.tagName === "TEXTAREA" || active.tagName === "INPUT") {
+    if (active && active.tagName === "TEXTAREA" || active && active.tagName === "INPUT") {
         insertIntoInputOrTextarea(active, symbol);
-    } else if (active.isContentEditable) {
+    } else if (active && active.isContentEditable) {
         insertIntoContentEditable(symbol);
+    } else {
+        navigator.clipboard.writeText(symbol);
     }
 }
 const arrowKeys = new Set([
@@ -46,10 +47,10 @@ const arrowKeys = new Set([
     "Digit3",
     "Digit4"
 ]);
-const metaKeyListener = (event) => {
-    if (event.metaKey && arrowKeys.has(event.code)) {
+const controlKeyListener = (event) => {
+    if (event.ctrlKey && arrowKeys.has(event.code)) {
         event.preventDefault();
         propositions(event.code);
     }
 };
-document.addEventListener("keydown", metaKeyListener);
+document.addEventListener("keydown", controlKeyListener);
