@@ -3,8 +3,8 @@ const unicodeSymbols = {
     "Digit2": "∨",
     "Digit3": "¬",
     "Digit4": "→",
-    "Digit4": "↔",
-    "Digit4": "⊕"
+    "Digit5": "↔",
+    "Digit6": "⊕"
 };
 function insertIntoInputOrTextarea(el, symbol) {
     const start = el.selectionStart;
@@ -46,7 +46,9 @@ const arrowKeys = new Set([
     "Digit1",
     "Digit2",
     "Digit3",
-    "Digit4"
+    "Digit4",
+    "Digit5",
+    "Digit6"
 ]);
 const controlKeyListener = (event) => {
     if (event.ctrlKey && arrowKeys.has(event.code)) {
