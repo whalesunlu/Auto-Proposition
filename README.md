@@ -2,14 +2,18 @@
 
 ## What this extension is for
 
-This extension helps type propositional symbols in Chrome text editors such as Google Docs.
+This extension helps type propositional symbols in Chrome text editors such as Microsoft Word and all other plain text fields in html.
+
+Currently does not support Google Docs.
 
 ## Text replacements
 
 Type one of these commands in a text field or Word:
 
-
-
+control + 1 = ∧
+control + 2 = ∨
+control + 3 = ¬
+control + 4 = →
 
 ## How to set up
 
