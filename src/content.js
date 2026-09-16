@@ -1,11 +1,17 @@
+const arrowKeys = new Set([
+    "Digit1",
+    "Digit2",
+    "Digit3",
+    "Digit4"
+]);
+
 const unicodeSymbols = {
     "Digit1": "∧",
     "Digit2": "∨",
     "Digit3": "¬",
-    "Digit4": "→",
-    "Digit5": "↔",
-    "Digit6": "⊕"
+    "Digit4": "→"
 };
+
 function insertIntoInputOrTextarea(el, symbol) {
     const start = el.selectionStart;
     const end = el.selectionEnd;
@@ -15,45 +21,25 @@ function insertIntoInputOrTextarea(el, symbol) {
     el.dispatchEvent(new Event("input", { bubbles: true }));
 }
 
-function insertIntoContentEditable(symbol) {
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-    const range = selection.getRangeAt(0);
-    range.deleteContents();
-    const textNode = document.createTextNode(symbol);
-    range.insertNode(textNode);
-    range.setStartAfter(textNode);
-    range.setEndAfter(textNode);
-    selection.removeAllRanges();
-    selection.addRange(range);
-
-    const target = textNode.parentElement || document.activeElement;
-    target.dispatchEvent(new InputEvent("input", { bubbles: true, data: symbol, inputType: "insertText" }));
-}
-
 function propositions(keyPressed) {
     const symbol = unicodeSymbols[keyPressed];
-    const active = document.activeElement;
-    if (!active) return;
+    if (!symbol) return;
 
-    if (active.tagName === "TEXTAREA" || active.tagName === "INPUT") {
-        insertIntoInputOrTextarea(active, symbol);
-    } else if (active.isContentEditable) {
-        insertIntoContentEditable(symbol);
+    if (document.queryCommandSupported && document.queryCommandSupported("insertText")) {
+        document.execCommand("insertText", false, symbol);
+        return;
     }
-}
-const arrowKeys = new Set([
-    "Digit1",
-    "Digit2",
-    "Digit3",
-    "Digit4",
-    "Digit5",
-    "Digit6"
-]);
-const controlKeyListener = (event) => {
+
+    const active = document.activeElement;
+    if (active && (active.tagName === "TEXTAREA" || active.tagName === "INPUT")) {
+        insertIntoInputOrTextarea(active, symbol);
+    }
+};
+const conKeyListener = (event) => {
     if (event.ctrlKey && arrowKeys.has(event.code)) {
         event.preventDefault();
         propositions(event.code);
     }
 };
-document.addEventListener("keydown", controlKeyListener);
+
+document.addEventListener("keydown", conKeyListener);
